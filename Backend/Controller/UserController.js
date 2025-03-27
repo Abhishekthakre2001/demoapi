@@ -7,29 +7,6 @@ const { adduser, getuser, updateuser, deleteuser, findUserByUsername } = require
 
 
 async function saveuser(req, res) {
-
-    if (!req.body.Name) {
-        return res.status(400).json({ success: false, message: "Name is required" });
-    }
-    if (!req.body.Token_ID) {
-        return res.status(400).json({ success: false, message: "Token_ID is required" });
-    }
-    if (!req.body.Password) {
-        return res.status(400).json({ success: false, message: "Password is required" });
-    }
-    if (!req.body.Channel_ID) {
-        return res.status(400).json({ success: false, message: "Channel_ID is required" });
-    }
-    if (!req.body.Username) {
-        return res.status(400).json({ success: false, message: "Username is required" });
-    }
-    if (!req.body.App_ID) {
-        return res.status(400).json({ success: false, message: "App_ID is required" });
-    }
-    if (!req.body.Phone_Number) {
-        return res.status(400).json({ success: false, message: "Phone_Number is required" });
-    }
-
     try {
         const hashedPassword = await bcrypt.hash(req.body.Password, 10);
         const reqdata = {
@@ -39,7 +16,8 @@ async function saveuser(req, res) {
             Channel_ID: req.body.Channel_ID,
             Username: req.body.Username,
             App_ID: req.body.App_ID,
-            Phone_Number: req.body.Phone_Number
+            Phone_Number: req.body.Phone_Number,
+            status:req.body.status
         };
         console.log(reqdata)
         const saveuser = await adduser(reqdata);
@@ -59,7 +37,6 @@ async function saveuser(req, res) {
 }
 
 async function getusers(req, res) {
-
     try {
         const id = req.params.id;
         console.log("req controller", req.params.id)
@@ -84,27 +61,6 @@ async function getusers(req, res) {
 }
 
 async function updateusers(req, res) {
-    if (!req.body.Name) {
-        return res.status(400).json({ success: false, message: "Name is required" });
-    }
-    if (!req.body.Token_ID) {
-        return res.status(400).json({ success: false, message: "Token_ID is required" });
-    }
-    if (!req.body.Password) {
-        return res.status(400).json({ success: false, message: "Password is required" });
-    }
-    if (!req.body.Channel_ID) {
-        return res.status(400).json({ success: false, message: "Channel_ID is required" });
-    }
-    if (!req.body.Username) {
-        return res.status(400).json({ success: false, message: "Username is required" });
-    }
-    if (!req.body.App_ID) {
-        return res.status(400).json({ success: false, message: "App_ID is required" });
-    }
-    if (!req.body.Phone_Number) {
-        return res.status(400).json({ success: false, message: "Phone_Number is required" });
-    }
     try {
         console.log("id", req.params.id)
         console.log("req body", req.body)

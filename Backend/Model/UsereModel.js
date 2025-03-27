@@ -1,8 +1,8 @@
 const db = require("../Config/db");
 
 async function adduser(req, res) {
-    const addemp = await db.execute("INSERT INTO `User`(`Name`, `Token_ID`, `Password`, `Channel_ID`, `Username`, `App_ID`, `Phone_Number`) VALUES ( ?, ?, ?, ?, ?, ?, ?)",
-        [req.Name, req.Token_ID, req.Password, req.Channel_ID, req.Username, req.App_ID, req.Phone_Number]);
+    const addemp = await db.execute("INSERT INTO `User`(`Name`, `Token_ID`, `Password`, `Channel_ID`, `Username`, `App_ID`, `Phone_Number`, `status`) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?)",
+        [req.Name, req.Token_ID, req.Password, req.Channel_ID, req.Username, req.App_ID, req.Phone_Number, req.status]);
     return addemp;
 }
 
@@ -14,8 +14,8 @@ async function getuser(req, res) {
 
 async function updateuser(id, body){
     console.log("req in model",id, "body",body)
-    const {Name, Token_ID, Password, Channel_ID, Username, App_ID, Phone_Number} = body;
-    const updateuser = await db.execute("UPDATE User SET Name = ?, Token_ID = ?, Password = ?, Channel_ID = ?, Username = ?, App_ID = ?, Phone_Number = ?  WHERE id = ?",[Name, Token_ID, Password, Channel_ID, Username, App_ID, Phone_Number, id]);
+    const {Name, Token_ID, Password, Channel_ID, Username, App_ID, Phone_Number, status} = body;
+    const updateuser = await db.execute("UPDATE User SET Name = ?, Token_ID = ?, Password = ?, Channel_ID = ?, Username = ?, App_ID = ?, Phone_Number = ? , status = ?  WHERE id = ?",[Name, Token_ID, Password, Channel_ID, Username, App_ID, Phone_Number, status, id]);
    return updateuser;
 }
 

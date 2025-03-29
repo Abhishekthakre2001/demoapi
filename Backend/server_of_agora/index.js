@@ -76,7 +76,7 @@ app.use('/v1/team', team);
 
 // app.use('/v1/user', user);
 
-const PORT = process.env.PORT || 3000;
+const PORT = 4020 || 4020;
 httpServer.listen(PORT, () => {
     console.log(`Server started on http://localhost:3000`);
 });
